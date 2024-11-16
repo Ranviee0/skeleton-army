@@ -1,0 +1,28 @@
+{
+    "spriteSheetURL": "./graphics/sword.png",
+    "type":"none",
+    "size":[16,16],
+    "sprites":[
+        {
+            "name":"sword0",
+            "x":64,
+            "y":48,
+            "scalefactor":3,
+            "colorKey":-1
+	   },
+        {
+        "name":"sword1",
+        "x":0,
+        "y":0,
+        "scalefactor":3,
+        "colorKey":-1
+        },
+        {
+        "name":"sword2",
+        "x":64,
+        "y":0,
+        "scalefactor":3,
+        "colorKey":-1
+    }
+]
+}

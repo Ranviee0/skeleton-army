@@ -1,0 +1,14 @@
+{
+    "spriteSheetURL": "./graphics/Tiny16-ExpandedMaleSprites.png",
+    "type": "none",
+    "size": [16, 16],
+    "sprites": [
+      {
+        "name": "shield_potion",
+        "x": 16,
+        "y": 80,
+        "scalefactor": 3,
+        "colorKey": -1
+      }
+    ]
+  }

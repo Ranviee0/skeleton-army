@@ -1,0 +1,553 @@
+{
+  "spriteSheetURL": "./graphics/entities.png",
+  "type": "animation",
+  "size": [16, 16],
+  "sprites": [
+    {
+      "name": "other_walk_down",
+      "images": [
+        {
+          "x": 0,
+          "y": 0,
+          "scale": 7
+        },
+        {
+          "x": 16,
+          "y": 0,
+          "scale": 7
+        },
+        {
+          "x": 32,
+          "y": 0,
+          "scale": 7
+        }
+      ],
+      "idle_image": {
+        "x": 0,
+        "y": 0,
+        "scale": 7
+      },
+      "interval_time": 0.6,
+      "colorKey": null
+    },
+    {
+      "name": "other_walk_right",
+      "images": [
+        {
+          "x": 0,
+          "y": 32,
+          "scale": 7
+        },
+        {
+          "x": 16,
+          "y": 32,
+          "scale": 7
+        },
+        {
+          "x": 32,
+          "y": 32,
+          "scale": 7
+        }
+      ],
+      "idle_image": {
+        "x": 0,
+        "y": 32,
+        "scale": 7
+      },
+
+      "interval_time": 0.6,
+      "colorKey": null
+    },
+    {
+      "name": "other_walk_up",
+      "images": [
+        {
+          "x": 0,
+          "y": 48,
+          "scale": 7
+        },
+        {
+          "x": 16,
+          "y": 48,
+          "scale": 7
+        },
+        {
+          "x": 32,
+          "y": 48,
+          "scale": 7
+        }
+      ],
+      "idle_image": {
+        "x": 0,
+        "y": 48,
+        "scale": 7
+      },
+      "interval_time": 0.6,
+      "colorKey": null
+    },
+    {
+      "name": "other_walk_left",
+      "images": [
+        {
+          "x": 0,
+          "y": 16,
+          "scale": 7
+        },
+        {
+          "x": 16,
+          "y": 16,
+          "scale": 7
+        },
+        {
+          "x": 32,
+          "y": 16,
+          "scale": 7
+        }
+      ],
+      "idle_image": {
+        "x": 0,
+        "y": 16,
+        "scale": 7
+      },
+
+      "interval_time": 0.66,
+      "colorKey": null
+    },
+    {
+      "name": "boss1_walk_down",
+      "images": [
+        {
+          "x": 0,
+          "y": 64,
+          "scale": 7
+        },
+        {
+          "x": 16,
+          "y": 64,
+          "scale": 7
+        },
+        {
+          "x": 32,
+          "y": 64,
+          "scale": 7
+        }
+      ],
+      "idle_image": {
+        "x": 0,
+        "y": 0,
+        "scale": 7
+      },
+      "interval_time": 0.6,
+      "colorKey": null
+    },
+    {
+      "name": "boss1_walk_right",
+      "images": [
+        {
+          "x": 0,
+          "y": 96,
+          "scale": 7
+        },
+        {
+          "x": 16,
+          "y": 96,
+          "scale": 7
+        },
+        {
+          "x": 32,
+          "y": 96,
+          "scale": 7
+        }
+      ],
+      "idle_image": {
+        "x": 0,
+        "y": 96,
+        "scale": 7
+      },
+
+      "interval_time": 0.6,
+      "colorKey": null
+    },
+    {
+      "name": "boss1_walk_up",
+      "images": [
+        {
+          "x": 0,
+          "y": 112,
+          "scale": 7
+        },
+        {
+          "x": 16,
+          "y": 112,
+          "scale": 7
+        },
+        {
+          "x": 32,
+          "y": 112,
+          "scale": 7
+        }
+      ],
+      "idle_image": {
+        "x": 0,
+        "y": 112,
+        "scale": 7
+      },
+      "interval_time": 0.6,
+      "colorKey": null
+    },
+    {
+      "name": "boss1_walk_left",
+      "images": [
+        {
+          "x": 0,
+          "y": 80,
+          "scale": 7
+        },
+        {
+          "x": 16,
+          "y": 80,
+          "scale": 7
+        },
+        {
+          "x": 32,
+          "y": 80,
+          "scale": 7
+        }
+      ],
+      "idle_image": {
+        "x": 0,
+        "y": 80,
+        "scale": 7
+      },
+
+      "interval_time": 0.66,
+      "colorKey": null
+    },{
+      "name": "boss2_walk_down",
+      "images": [
+        {
+          "x": 48,
+          "y": 64,
+          "scale": 7
+        },
+        {
+          "x": 64,
+          "y": 64,
+          "scale": 7
+        },
+        {
+          "x": 80,
+          "y": 64,
+          "scale": 7
+        }
+      ],
+      "idle_image": {
+        "x": 48,
+        "y": 64,
+        "scale": 7
+      },
+      "interval_time": 0.6,
+      "colorKey": null
+    },{
+      "name": "boss2_walk_left",
+      "images": [
+        {
+          "x": 48,
+          "y": 80,
+          "scale": 7
+        },
+        {
+          "x": 64,
+          "y": 80,
+          "scale": 7
+        },
+        {
+          "x": 80,
+          "y": 80,
+          "scale": 7
+        }
+      ],
+      "idle_image": {
+        "x": 0,
+        "y": 80,
+        "scale": 7
+      },
+
+      "interval_time": 0.66,
+      "colorKey": null
+    },
+    {
+      "name": "boss2_walk_right",
+      "images": [
+        {
+          "x": 48,
+          "y": 96,
+          "scale": 7
+        },
+        {
+          "x": 64,
+          "y": 96,
+          "scale": 7
+        },
+        {
+          "x": 80,
+          "y": 96,
+          "scale": 7
+        }
+      ],
+      "idle_image": {
+        "x": 48,
+        "y": 96,
+        "scale": 7
+      },
+
+      "interval_time": 0.6,
+      "colorKey": null
+    },
+    {
+      "name": "boss2_walk_up",
+      "images": [
+        {
+          "x": 48,
+          "y": 112,
+          "scale": 7
+        },
+        {
+          "x": 64,
+          "y": 112,
+          "scale": 7
+        },
+        {
+          "x": 80,
+          "y": 112,
+          "scale": 7
+        }
+      ],
+      "idle_image": {
+        "x": 48,
+        "y": 112,
+        "scale": 7
+      },
+      "interval_time": 0.6,
+      "colorKey": null
+    },
+    {
+      "name": "boss3_walk_down",
+      "images": [
+        {
+          "x": 96,
+          "y": 64,
+          "scale": 7
+        },
+        {
+          "x": 112,
+          "y": 64,
+          "scale": 7
+        },
+        {
+          "x": 128,
+          "y": 64,
+          "scale": 7
+        }
+      ],
+      "idle_image": {
+        "x": 96,
+        "y": 64,
+        "scale": 7
+      },
+      "interval_time": 0.6,
+      "colorKey": null
+    },{
+      "name": "boss3_walk_left",
+      "images": [
+        {
+          "x": 96,
+          "y": 80,
+          "scale": 7
+        },
+        {
+          "x": 112,
+          "y": 80,
+          "scale": 7
+        },
+        {
+          "x": 128,
+          "y": 80,
+          "scale": 7
+        }
+      ],
+      "idle_image": {
+        "x": 96,
+        "y": 80,
+        "scale": 7
+      },
+
+      "interval_time": 0.66,
+      "colorKey": null
+    },
+    {
+      "name": "boss3_walk_right",
+      "images": [
+        {
+          "x": 96,
+          "y": 96,
+          "scale": 7
+        },
+        {
+          "x": 112,
+          "y": 96,
+          "scale": 7
+        },
+        {
+          "x": 128,
+          "y": 96,
+          "scale": 7
+        }
+      ],
+      "idle_image": {
+        "x": 96,
+        "y": 96,
+        "scale": 7
+      },
+
+      "interval_time": 0.6,
+      "colorKey": null
+    },
+    {
+      "name": "boss3_walk_up",
+      "images": [
+        {
+          "x": 96,
+          "y": 112,
+          "scale": 7
+        },
+        {
+          "x": 112,
+          "y": 112,
+          "scale": 7
+        },
+        {
+          "x": 128,
+          "y": 112,
+          "scale": 7
+        }
+      ],
+      "idle_image": {
+        "x": 96,
+        "y": 112,
+        "scale": 7
+      },
+      "interval_time": 0.6,
+      "colorKey": null
+    },{
+      "name": "boss4_walk_down",
+      "images": [
+        {
+          "x": 144,
+          "y": 64,
+          "scale": 7
+        },
+        {
+          "x": 160,
+          "y": 64,
+          "scale": 7
+        },
+        {
+          "x": 176,
+          "y": 64,
+          "scale": 7
+        }
+      ],
+      "idle_image": {
+        "x": 144,
+        "y": 64,
+        "scale": 7
+      },
+      "interval_time": 0.6,
+      "colorKey": null
+    },{
+      "name": "boss4_walk_left",
+      "images": [
+        {
+          "x": 144,
+          "y": 80,
+          "scale": 7
+        },
+        {
+          "x": 160,
+          "y": 80,
+          "scale": 7
+        },
+        {
+          "x": 176,
+          "y": 80,
+          "scale": 7
+        }
+      ],
+      "idle_image": {
+        "x": 144,
+        "y": 80,
+        "scale": 7
+      },
+
+      "interval_time": 0.66,
+      "colorKey": null
+    },
+    {
+      "name": "boss4_walk_right",
+      "images": [
+        {
+          "x": 144,
+          "y": 96,
+          "scale": 7
+        },
+        {
+          "x": 160,
+          "y": 96,
+          "scale": 7
+        },
+        {
+          "x": 176,
+          "y": 96,
+          "scale": 7
+        }
+      ],
+      "idle_image": {
+        "x": 144,
+        "y": 96,
+        "scale": 7
+      },
+
+      "interval_time": 0.6,
+      "colorKey": null
+    },
+    {
+      "name": "boss4_walk_up",
+      "images": [
+        {
+          "x": 144,
+          "y": 112,
+          "scale": 7
+        },
+        {
+          "x": 160,
+          "y": 112,
+          "scale": 7
+        },
+        {
+          "x": 176,
+          "y": 112,
+          "scale": 7
+        }
+      ],
+      "idle_image": {
+        "x": 144,
+        "y": 112,
+        "scale": 7
+      },
+      "interval_time": 0.6,
+      "colorKey": null
+    }
+    
+  ]
+}

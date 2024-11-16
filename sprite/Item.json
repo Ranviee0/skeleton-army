@@ -1,0 +1,21 @@
+{
+  "spriteSheetURL": "./graphics/breakout.png",
+  "type": "none",
+  "size": [16, 16],
+  "sprites": [
+    {
+      "name": "health",
+      "x": 32,
+      "y": 192,
+      "scalefactor": 3,
+      "colorKey": -1
+    },
+    {
+      "name": "other",
+      "x": 48,
+      "y": 192,
+      "scalefactor": 3,
+      "colorKey": -1
+    }
+  ]
+}
