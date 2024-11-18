@@ -11,7 +11,6 @@ class StartState(BaseState):
             self.bg_image, (WIDTH + 5, HEIGHT + 5))
 
     def Enter(self, params):
-        print(self.bg_image)
         pass
 
     def update(self, dt, events):
@@ -29,6 +28,7 @@ class StartState(BaseState):
 
     def render(self, screen):
         screen.blit(self.bg_image, (0, 0))
+        gSounds['start'].play()
 
         t_title = gFonts['zelda_large'].render("Alien Z", False, (181,119,5))
         rect = t_title.get_rect(center=(WIDTH / 2 + 6, HEIGHT / 2 - 90))

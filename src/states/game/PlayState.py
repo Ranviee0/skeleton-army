@@ -59,7 +59,6 @@ class PlayState(BaseState):
             self.player.inventory.items = []
             g_state_manager.Change('game_over')
 
-        print(self.player.room)
 
         if self.player.room == ROOM_LIMIT:
             self.player.inventory.items = []
@@ -88,37 +87,25 @@ class PlayState(BaseState):
                 self.item_menu_open = False
 
     def use_inventory_item(self, item):
-        print(f"Attempting to use item: {item.type}")
         damage = self.player.attack_damage
         if item.type == 'health':
-            print(f"Player health before: {self.player.health}")
             self.player.health = min(self.player.health + 2, 10)
-            print(f"Player health after: {self.player.health}")
         elif item.type == 'shield_potion':
-            print(f"Player shield before: {self.player.shield}")
             if self.player.shield < 5:
                 self.player.shield += 1
-                print(f"Player shield after: {self.player.shield}")
         elif item.type == 'sword0':
-
             self.player.sword0 = True
             self.player.sword1 = False
             self.player.sword2 = False
-
-            print(f"Player sword0 status: {self.player.sword0}")
-            print(f"Player attack damage after: {self.player.attack_damage}")
         elif item.type == 'sword1':
             self.player.sword1 = True
             self.player.sword0 = False
             self.player.sword2 = False
         elif item.type == 'sword2':
-            print("Equipped Sword2: Instant Kill effect!")
-            print(f"Player attack damage before: {self.player.attack_damage}")
             self.player.sword2 = True
             self.player.sword1 = False
             self.player.sword0 = False
         self.inventory.remove_item(item)
-        print(f"Item {item.type} removed from inventory.")
 
 
     def render(self, screen):

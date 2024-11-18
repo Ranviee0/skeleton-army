@@ -73,7 +73,13 @@ gSounds = {
     'sword':  pygame.mixer.Sound('sounds/sword.wav'),
     'hit_enemy':  pygame.mixer.Sound('sounds/hit_enemy.wav'),
     'hit_player':  pygame.mixer.Sound('sounds/hit_player.wav'),
-    'door':  pygame.mixer.Sound('sounds/door.wav')
+    'door':  pygame.mixer.Sound('sounds/door.wav'),
+    'scream': pygame.mixer.Sound('sounds/scream.mp3'),
+    'pick_up_item': pygame.mixer.Sound('sounds/pick_up_item.wav'),
+    'start': pygame.mixer.Sound('sounds/start.mp3'),
+    'game_over': pygame.mixer.Sound('sounds/game_over.mp3'),
+    'warning': pygame.mixer.Sound('sounds/warning.mp3'),
+    'attack': pygame.mixer.Sound('sounds/attack.mp3')
 }
 
 gFonts = {

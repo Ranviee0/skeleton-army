@@ -26,11 +26,6 @@ class StoryState(BaseState):
 
 
     def render(self, screen):
-        # Render the title
-        t_title = gFonts['zelda'].render("Story", False, (255,184,36))
-        rect = t_title.get_rect(center=(WIDTH / 2, HEIGHT / 2 - 144))
-        screen.blit(t_title, rect)
-
     # Render the paragraph
         lorem_ipsum = (
             "I am a warrior, stranded on an alien-infested space station."
@@ -65,9 +60,4 @@ class StoryState(BaseState):
             text_rect = text_surface.get_rect(center=(WIDTH / 2, y_offset))
             screen.blit(text_surface, text_rect)
             y_offset += font.size(line)[1] + line_spacing  # Move down for the next line
-
-        # Render the "Press Enter" prompt
-        t_press_enter = font.render("Press Enter", False, color)
-        rect = t_press_enter.get_rect(center=(WIDTH / 2, y_offset + 40))  # Adjust y position
-        screen.blit(t_press_enter, rect)
 

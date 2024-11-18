@@ -64,7 +64,7 @@ class PlayerAttackState(BaseState):
                 # Apply damage to the entity
                 entity.Damage(self.player.attack_damage)
                 entity.SetInvulnerable(0.2)
-                gSounds['hit_enemy'].play()
+                gSounds['attack'].play()
 
         # Reset attack animation after it's played once
         if self.player.curr_animation.times_played > 0:

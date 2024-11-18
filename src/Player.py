@@ -64,7 +64,6 @@ class Player(EntityBase):
     def equip_item(self, item_type):
         """Sets the item type that the player has equipped."""
         self.item_type = item_type
-        print(f"Equipped item: {item_type}")  # Debugging message
 
     def use_item(self, item_type):
         if item_type == 'health':

@@ -105,13 +105,11 @@ class Room:
 
         if closest_object:
             self.objects.remove(closest_object)
-            print(f"Removed closest 'health' object at ({closest_object.x}, {closest_object.y}) with distance {min_distance:.2f}")
         else:
             print("No 'health' object found.")
 
     def GenerateEntities(self):
         types = ['skeleton']
-        print(f"{NUMBER_OF_MONSTER * self.player.room} skeletons will spawn initially.")
 
         for _ in range(NUMBER_OF_MONSTER * self.player.room):
             type = random.choice(types)
@@ -217,9 +215,9 @@ class Room:
         if not self.boss_generated:
             all_skeletons_dead = all(entity.is_dead or entity.entityType == 'boss' for entity in self.entities)
             if all_skeletons_dead:
+                gSounds['warning'].play()
                 self.skeletons_cleared = True
                 self.warning_start_time = pygame.time.get_ticks()  # Start the warning timer
-                print("All skeletons defeated! Boss will appear soon...")
                 self.warning_window_open = True  # Open warning window
 
                 xboss = random.randrange(TILE_SIZE, TILE_SIZE * (MAP_WIDTH - 3))
@@ -294,6 +292,7 @@ class Room:
 
         for entity in self.entities:
             if entity.health <= 0:
+                gSounds['scream'].play()
                 entity.is_dead = True
                 self.entities.remove(entity)
             elif not entity.is_dead:
@@ -337,6 +336,7 @@ class Room:
 
             if self.player.Collides(object):
                 if not object.type == 'solid':
+                    gSounds['pick_up_item'].play()
                     self.player.add_to_inventory(object)
                     self.objects.remove(object)
 

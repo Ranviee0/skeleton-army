@@ -76,7 +76,6 @@ class EntityWalkState(BaseState):
 
     def ProcessBossAI(self, params, playerCoords, dt):
         self.move_duration = 0.7
-        #print(str(playerCoords) + " " + str(round(self.entity.x)) + " " + str(round(self.entity.y)))
         if playerCoords is None:
             pass
         else:

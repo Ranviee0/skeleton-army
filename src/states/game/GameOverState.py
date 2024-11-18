@@ -26,10 +26,7 @@ class GameOverState(BaseState):
 
 
     def render(self, screen):
-        t_title = gFonts['zelda'].render("GAME OVER", False, (255,184,36))
+        gSounds['game_over'].play()
+        t_title = gFonts['zelda_large'].render("GAME OVER", False, (255,184,36))
         rect = t_title.get_rect(center=(WIDTH / 2, HEIGHT / 2 - 144))
         screen.blit(t_title, rect)
-
-        t_press_enter = gFonts['zelda_small'].render("Press Enter", False, (255,184,36))
-        rect = t_press_enter.get_rect(center=(WIDTH / 2, HEIGHT / 2 + 48))
-        screen.blit(t_press_enter, rect)

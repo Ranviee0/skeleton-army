@@ -11,7 +11,6 @@ class Inventory:
             self.items.append(item)
             return True
         else:
-            print("Inventory is full!")
             return False
 
     def remove_item(self, item):
