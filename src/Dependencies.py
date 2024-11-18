@@ -7,6 +7,7 @@ from src.states.game.PlayState import PlayState
 from src.states.game.StartState import StartState
 from src.states.game.GameOverState import GameOverState
 from src.states.game.WinState import WinState
+from src.states.game.StoryState import StoryState
 from src.StateMachine import StateMachine
 
 

@@ -25,7 +25,7 @@ class StartState(BaseState):
                     sys.exit()
                 if event.key == pygame.K_RETURN:
                     ROOM = 1
-                    g_state_manager.Change('play')
+                    g_state_manager.Change('story')
 
     def render(self, screen):
         screen.blit(self.bg_image, (0, 0))

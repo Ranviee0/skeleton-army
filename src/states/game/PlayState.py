@@ -59,7 +59,9 @@ class PlayState(BaseState):
             self.player.inventory.items = []
             g_state_manager.Change('game_over')
 
-        if self.player.room == 5:
+        print(self.player.room)
+
+        if self.player.room == ROOM_LIMIT:
             self.player.inventory.items = []
             g_state_manager.Change('win')
 
