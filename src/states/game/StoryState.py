@@ -27,18 +27,18 @@ class StoryState(BaseState):
 
     def render(self, screen):
         # Render the title
-        t_title = gFonts['zelda'].render("Story", False, (175, 53, 42))
+        t_title = gFonts['zelda'].render("Story", False, (255,184,36))
         rect = t_title.get_rect(center=(WIDTH / 2, HEIGHT / 2 - 144))
         screen.blit(t_title, rect)
 
     # Render the paragraph
         lorem_ipsum = (
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "
-            "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
-            "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+            "I am a warrior, stranded on an alien-infested space station."
+            "My blade meets claws and fangs as I fight to survive."
+            "Whispers of an escape pod guide me through the chaos. Freedom is near—if I endure."
         )
         font = gFonts['zelda_small']
-        color = (175, 53, 42)
+        color = (255,184,36)
         line_spacing = 5  # Space between lines
         paragraph_width = WIDTH - 80  # Padding of 40px on each side
 

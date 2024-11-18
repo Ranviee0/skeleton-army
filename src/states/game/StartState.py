@@ -30,14 +30,14 @@ class StartState(BaseState):
     def render(self, screen):
         screen.blit(self.bg_image, (0, 0))
 
-        t_title = gFonts['halo'].render("Alien 2", False, (34, 34, 34))
+        t_title = gFonts['zelda_large'].render("Alien Z", False, (181,119,5))
         rect = t_title.get_rect(center=(WIDTH / 2 + 6, HEIGHT / 2 - 90))
         screen.blit(t_title, rect)
-        t_title = gFonts['halo'].render("Alien 2", False, (0,255,0))
+        t_title = gFonts['zelda_large'].render("Alien Z", False, (255,184,36))
         rect = t_title.get_rect(center=(WIDTH / 2 , HEIGHT / 2 - 96))
         screen.blit(t_title, rect)
 
-        t_press_enter = gFonts['dna'].render("Press Enter", False, (255, 255, 255))
+        t_press_enter = gFonts['zelda_small'].render("Press Enter", False, (255,184,36))
         rect = t_press_enter.get_rect(center=(WIDTH / 2, HEIGHT / 2 +192))
         screen.blit(t_press_enter, rect)
 

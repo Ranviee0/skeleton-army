@@ -83,6 +83,7 @@ gFonts = {
     'large': pygame.font.Font('fonts/font.ttf', 96),
     'zelda_small': pygame.font.Font('fonts/zelda.otf', 24),
     'zelda': pygame.font.Font('fonts/zelda.otf', 36),
+    'zelda_large': pygame.font.Font('fonts/zelda.otf', 144),
     'gothic_medium': pygame.font.Font('fonts/GothicPixels.ttf', 48),
     'gothic_large': pygame.font.Font('fonts/GothicPixels.ttf', 96),
     'halo': pygame.font.Font('fonts/Halo.ttf', 192),
