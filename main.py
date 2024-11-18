@@ -31,25 +31,43 @@ class GameMain:
 
 
     def PlayGame(self):
-        #gSounds['music'].play(-1)
         clock = pygame.time.Clock()
-
         g_state_manager.Change("start")
+
+        paused = False  # Initialize paused state before the while loop
 
         while True:
             pygame.display.set_caption("{:d} FPS".format(int(clock.get_fps())))
             dt = clock.tick(self.max_frame_rate) / 1000.0
 
+            # Process events
             events = pygame.event.get()
+            for event in events:
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    sys.exit()
+                elif event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_BACKSPACE:
+                        paused = not paused  # Toggle pause state
 
-            g_state_manager.update(dt, events)
-            tween.update(dt)
+            # Clear the screen
+            self.screen.fill((0, 0, 0))  # เคลียร์หน้าจอทุกครั้ง
 
-            self.screen.blit(self.background_image, (0, 0))
+            # Update game state only when not paused
+            if not paused:
+                g_state_manager.update(dt, events)
 
+            # Render game elements regardless of pause state
             g_state_manager.render()
-           
-            pygame.display.update()
+
+            # Display "Pause" message when paused
+            if paused:
+                text = gFonts['zelda_smalls'].render("Paused. Press Backspace to Resume", False, (70, 53, 42))
+                rect = text.get_rect(center=(WIDTH / 2, HEIGHT / 2 + 48))
+                self.screen.blit(text, rect)  # Adjust the position as needed
+
+            # Refresh the screen with all drawn elements
+            pygame.display.flip()
 
 
 if __name__ == '__main__':

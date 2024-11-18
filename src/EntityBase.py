@@ -43,6 +43,7 @@ class EntityBase():
         self.state_machine = None
         self.curr_animation = None
 
+        self.previous_position = (self.x, self.y)
 
     def CreateAnimations(self):
         pass
@@ -65,8 +66,26 @@ class EntityBase():
         self.rect.y = self.y
 
     def Collides(self, target):
-        return not(self.rect.x + self.width < target.rect.x or self.rect.x > target.rect.x + target.width or
-                   self.rect.y + self.height < target.rect.y or self.rect.y > target.rect.y + target.height)
+        y, height = self.y + self.height/2, self.height-self.height/2
+
+        return not (self.x + self.width < target.x or self.x > target.x + target.width or
+                    y + height < target.y or y > target.y + target.height)
+    
+    def undo_move(self):
+        # Revert to the previous position if a collision occurred
+        a = 0
+        if self.entityType == 'player':
+            a = 3
+        else:
+            a = 8
+        if self.direction == 'right':
+            self.x = self.x - a
+        elif self.direction == 'left':
+            self.x = self.x + a
+        elif self.direction == 'up':
+            self.y = self.y + a
+        elif self.direction == 'down':
+            self.y = self.y - a
 
     def Damage(self, dmg):
         self.health -= dmg
@@ -114,4 +133,6 @@ class EntityBase():
         if self.curr_animation.idleSprite is not None:
             self.curr_animation.idleSprite.set_alpha(255)
         self.curr_animation.image.set_alpha(255)
+
+        
 

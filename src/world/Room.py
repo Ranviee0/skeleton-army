@@ -12,6 +12,7 @@ from src.states.entity.EntityWalkState import EntityWalkState
 from src.StateMachine import StateMachine
 from src.GameObject import GameObject
 from src.object_defs import *
+from src.generating import generate_flat_maze
 
 class Room:
     def __init__(self, player):
@@ -114,12 +115,25 @@ class Room:
 
         for _ in range(NUMBER_OF_MONSTER * self.player.room):
             type = random.choice(types)
+            
+            def generate_coordinates(self):
+                x_, y_ = 0, 0  # Initialize variables
+
+                while True:
+                    x_ = random.randrange(TILE_SIZE, TILE_SIZE * (MAP_WIDTH - 3))
+                    y_ = random.randrange(TILE_SIZE, TILE_SIZE * (MAP_WIDTH - 3))
+                    if not self.is_in_range(x_, y_):  # Stop when x_, y_ is out of range
+                        break
+                return x_, y_
+
+            x_,y_ = generate_coordinates(self)
+
             conf = EntityConf(
                 entityType=type,
                 animation=ENTITY_DEFS[type].animation,
                 walk_speed=ENTITY_DEFS[type].walk_speed,
-                x=random.randrange(TILE_SIZE, TILE_SIZE * (MAP_WIDTH - 3)),
-                y=random.randrange(TILE_SIZE, TILE_SIZE * (MAP_WIDTH - 3)),
+                x=x_,
+                y=y_,
                 width=ENTITY_DEFS[type].width,
                 height=ENTITY_DEFS[type].height,
                 health=ENTITY_DEFS[type].health
@@ -135,27 +149,69 @@ class Room:
             entity.ChangeState("walk")
             self.entities.append(entity)
 
+            
     def GenerateObjects(self):
+        my_array = ["sword1", "sword1", "sword1", "sword2", "sword2", "sword0", "sword0", "sword0", "sword0", "sword0"]
+
+        def generate_coordinates(self):
+            x_, y_ = 0, 0  # Initialize variables
+
+            while True:
+                x_ = random.randrange(TILE_SIZE, TILE_SIZE * (MAP_WIDTH - 3))
+                y_ = random.randrange(TILE_SIZE, TILE_SIZE * (MAP_WIDTH - 3))
+                if not self.is_in_range(x_, y_):  # Stop when x_, y_ is out of range
+                    break
+            return x_, y_
+
+        x_,y_ = generate_coordinates(self)
+
         for _ in range(NUMBER_OF_HEALTH):
+            x_,y_ = generate_coordinates(self)
             health = GameObject(GAME_OBJECT_DEFS['health'], 
-                x=random.randint(MAP_RENDER_OFFSET_X + TILE_SIZE, WIDTH - TILE_SIZE * 2 - 48),
-                y=random.randint(MAP_RENDER_OFFSET_Y + TILE_SIZE, HEIGHT - (HEIGHT - MAP_HEIGHT * TILE_SIZE) + MAP_RENDER_OFFSET_Y - TILE_SIZE - 48)
+                x=x_,
+                y=y_
             )
             self.objects.append(health)
 
-        for _ in range(3):
-            sword0 = GameObject(GAME_OBJECT_DEFS['sword0'], 
-                x=random.randint(MAP_RENDER_OFFSET_X + TILE_SIZE, WIDTH - TILE_SIZE * 2 - 48),
-                y=random.randint(MAP_RENDER_OFFSET_Y + TILE_SIZE, HEIGHT - (HEIGHT - MAP_HEIGHT * TILE_SIZE) + MAP_RENDER_OFFSET_Y - TILE_SIZE - 48)
+        for _ in range(1):
+            random_sword = random.choice(my_array)
+            x_,y_ = generate_coordinates(self)
+            sword = GameObject(GAME_OBJECT_DEFS[random_sword], 
+                x=x_,
+                y=y_
             )
-            self.objects.append(sword0)
+            if(random.randint(1,3) > 1):
+                self.objects.append(sword)
 
         for _ in range(NUMBER_OF_SHIELD_POTIONS):
             shield_potion = GameObject(GAME_OBJECT_DEFS['shield_potion'], 
-                x=random.randint(MAP_RENDER_OFFSET_X + TILE_SIZE, WIDTH - TILE_SIZE * 2 - 48),
-                y=random.randint(MAP_RENDER_OFFSET_Y + TILE_SIZE, HEIGHT - (HEIGHT - MAP_HEIGHT * TILE_SIZE) + MAP_RENDER_OFFSET_Y - TILE_SIZE - 48)
+                x=x_,
+                y=y_
             )
             self.objects.append(shield_potion)
+
+        maze_list = generate_flat_maze(MAP_WIDTH, path_width=MAZE_SPACE)
+
+        for x_ in range(MAP_WIDTH):  # Outer loop for MAP_WIDTH
+            for y_ in range(MAP_HEIGHT):  # Inner loop for MAP_HEIGHT
+                if (maze_list[y_ * MAP_WIDTH + x_] == 0) and (x_>2) and (y_>2):
+                    wall = GameObject(GAME_OBJECT_DEFS['solid'], 
+                    x=TILE_SIZE*x_,
+                    y=TILE_SIZE*y_
+                    )
+                    self.objects.append(wall)
+
+    def is_in_range(self, x, y):
+        for obj in self.objects:
+            if obj.type == 'solid':
+                x_start = obj.x
+                x_end = obj.x + (TILE_SIZE)
+                y_start = obj.y
+                y_end = obj.y + (TILE_SIZE)
+
+                if x_start <= x <= x_end and y_start <= y <= y_end:
+                    return True
+        return False
 
     def spawn_boss_if_all_skeletons_dead(self):
         if not self.boss_generated:
@@ -223,8 +279,6 @@ class Room:
             # Blit overlay and message onto the main screen
             screen.blit(overlay, (0, 0))
             screen.blit(message, message_rect)
-
-
         
 
     def update(self, dt, events):
@@ -265,10 +319,26 @@ class Room:
         for object in self.objects:
             if object.solid and self.player.Collides(object):
                 self.player.undo_move()
+            for entity in self.entities:
+                if object.solid and entity.Collides(object):
+                    entity.undo_move()
+                    if entity.direction == 'down':
+                        choices = ['up','left','right']
+                        entity.direction = random.choice(choices)
+                    elif entity.direction == 'up':
+                        choices = ['down','left','right']
+                        entity.direction = random.choice(choices)
+                    elif entity.direction == 'left':
+                        choices = ['down','up','right']
+                        entity.direction = random.choice(choices)
+                    elif entity.direction == 'right':
+                        choices = ['down','up','left']
+                        entity.direction = random.choice(choices)
 
             if self.player.Collides(object):
-                self.player.add_to_inventory(object)
-                self.objects.remove(object)
+                if not object.type == 'solid':
+                    self.player.add_to_inventory(object)
+                    self.objects.remove(object)
 
 
         for item in self.items[:]:

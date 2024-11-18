@@ -9,6 +9,7 @@ class PlayerAttackState(BaseState):
     def __init__(self, player, dungeon=None):
         self.player = player
         self.dungeon = dungeon
+        self.sword_hitbox = Hitbox(self.player.x, self.player.y, 100, 100)
         self.player.curr_animation.Refresh()
         self.player.ChangeAnimation("attack_" + self.player.direction)
 
@@ -18,28 +19,9 @@ class PlayerAttackState(BaseState):
         self.player.offset_y = 0
 
         # Check and set the hitbox based on the equipped item state
-        self.check_item_state()
-
         # Refresh animation
         self.player.curr_animation.Refresh()
         self.player.ChangeAnimation("attack_" + self.player.direction)
-
-    def check_item_state(self):
-        """Sets hitbox size and position based on the player's equipped item."""
-        if self.player.item_type == "wide_attack":
-            # Configure a large circular hitbox around the player for wide attack
-            hitbox_radius = 80  # Radius for the wide area effect
-            hitbox_x = self.player.x - hitbox_radius
-            hitbox_y = self.player.y - hitbox_radius
-            hitbox_width = hitbox_radius * 2
-            hitbox_height = hitbox_radius * 2
-        else:
-            # Default narrow hitbox for normal attacks or one-hit attack
-            hitbox_width, hitbox_height = self.get_default_hitbox_size()
-            hitbox_x, hitbox_y = self.calculate_hitbox_position(hitbox_width, hitbox_height)
-
-        # Initialize or update the sword hitbox
-        self.sword_hitbox = Hitbox(hitbox_x, hitbox_y, hitbox_width, hitbox_height)
 
     def calculate_hitbox_position(self, width, height):
         """Calculate default hitbox position based on the player's direction."""
@@ -53,22 +35,34 @@ class PlayerAttackState(BaseState):
         elif direction == 'down':
             return self.player.x, self.player.y + self.player.height
 
-    def get_default_hitbox_size(self):
-        """Return default hitbox dimensions for normal attacks."""
-        if self.player.direction in ['left', 'right']:
-            return 24, 48
-        return 48, 24
-
     def Exit(self):
         pass
 
     def update(self, dt, events):
+        self.sword_hitbox = Hitbox(self.player.x, self.player.y, self.sword_hitbox.width, self.sword_hitbox.height)
         # Apply attack effect to all entities within the hitbox
         for entity in self.dungeon.current_room.entities:
             if entity.Collides(self.sword_hitbox) and not entity.invulnerable:
-                # Use item_type to determine damage effect
-                damage = entity.health if self.player.item_type == "one_hit" else 1
-                entity.Damage(damage)
+                # Initialize default damage
+
+                if self.player.sword0:
+                    # Wide attack: Deals extra damage
+                    self.sword_hitbox = Hitbox(self.player.x, self.player.y, 100, 100)
+                    self.player.attack_damage = 25  # Example: +10 extra damage
+                    print(f"Wide attack hits {entity.entityType} for 25 damage!")
+                    
+                elif self.player.sword1:
+                    self.sword_hitbox = Hitbox(self.player.x, self.player.y, 5000, 5000)
+                    self.player.attack_damage = 5  # Moderate extra damage
+                    print(f"Area slash hits {entity.entityType} for 5 damage!")
+                elif self.player.sword2:
+                    # Instant kill sword
+                    self.sword_hitbox = Hitbox(self.player.x, self.player.y, 100, 100)
+                    self.player.attack_damage = 9999  # Kill the entity outright
+                    print(f"Instant kill slays {entity.entityType}!")
+
+                # Apply damage to the entity
+                entity.Damage(self.player.attack_damage)
                 entity.SetInvulnerable(0.2)
                 gSounds['hit_enemy'].play()
 
@@ -84,4 +78,4 @@ class PlayerAttackState(BaseState):
 
         # Debug: Render hitbox for testing
         # Uncomment the line below to visualize the hitbox
-        # pygame.draw.rect(screen, (255, 0, 255), pygame.Rect(self.sword_hitbox.x, self.sword_hitbox.y, self.sword_hitbox.width, self.sword_hitbox.height))
+        # pygame.draw.rect(screen, (255, 0, 255), pygame.Rect(self.player.x, self.player.y, self.player.x + self.sword_hitbox.width, self.player.y + self.sword_hitbox.height))

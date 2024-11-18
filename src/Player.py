@@ -2,6 +2,7 @@ from src.EntityBase import EntityBase
 from src.Dependencies import *
 from src.Inventory import Inventory  
 import math
+import time
 
 class Player(EntityBase):
 
@@ -15,8 +16,28 @@ class Player(EntityBase):
         self.inventory = Inventory() 
         self.shield = 0
         self.sword0 = False
-        
-        
+        self.sword1 = False
+        self.sword2 = False
+        self.sword_timers = {
+            "sword0": None,
+            "sword1": None,
+            "sword2": None,
+        }
+        self.previous_position = (self.x, self.y)
+
+    def update_sword_status(self):
+        current_time = time.time()
+
+        # Check if 30 seconds have passed for each sword
+        for sword, activation_time in self.sword_timers.items():
+            if activation_time and current_time - activation_time > 30:
+                setattr(self, sword, False)  # Set the sword's status to False
+                self.sword_timers[sword] = None  # Reset the timer
+
+    def activate_sword(self, sword_name):
+        setattr(self, sword_name, True)  # Set the sword's status to True
+        self.sword_timers[sword_name] = time.time()  # Record the activation time
+    
     def getRoom(self):
         print(self.room)
 

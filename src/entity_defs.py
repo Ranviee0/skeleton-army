@@ -52,8 +52,8 @@ gBoss_animation_list = {"boss":{"down": sprite_collection["other_walk_down"].ani
 chosen_boss_type = random.choice(list(gBoss_animation_list.keys()))
 ENTITY_DEFS = {
     'player': EntityConf(entityType="player", animation=gPlayer_animation_list, walk_speed=PLAYER_WALK_SPEED,
-                         x=WIDTH/2-24, y=HEIGHT/2 -33, width=48, height=66,
+                         x=WIDTH/2-24, y=HEIGHT/2 -33, width=48, height=64,
                          health=6, offset_x=0, offset_y=15),
-    'skeleton':EntityConf(entityType="skeleton", animation=gSkeleton_animation_list, width=48, height=48, health=2, walk_speed=100),
+    'skeleton':EntityConf(entityType="skeleton", animation=gSkeleton_animation_list, width=48, height=48, health=2, walk_speed=80),
     'boss':EntityConf(entityType="boss", animation=gBoss_animation_list[chosen_boss_type], width=48,height=48, health=10, walk_speed=120)
 }

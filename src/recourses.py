@@ -77,6 +77,7 @@ gSounds = {
 }
 
 gFonts = {
+    'zelda_smalls': pygame.font.Font('fonts/zelda.otf', 49),
     'small': pygame.font.Font('fonts/font.ttf', 24),
     'medium': pygame.font.Font('fonts/font.ttf', 48),
     'large': pygame.font.Font('fonts/font.ttf', 96),
